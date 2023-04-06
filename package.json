@@ -1,9 +1,9 @@
 {
-  "name": "next-turbo-temp",
+  "name": "solid-turbo",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.11.0",
-  "description": "The project is build with NextJS and TailwindCSS",
+  "description": "The project is build with SolidJS and UnoCSS",
   "author": {
     "name": "ux",
     "email": "1219654535@qq.com"

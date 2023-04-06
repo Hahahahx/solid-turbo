@@ -1,24 +1,18 @@
 .select__trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
+  --uno: inline-flex outline-0 rounded items-center justify-between px-2 border-1  border-slate;
   width: 200px;
-  border-radius: 6px;
-  padding: 0 10px 0 16px;
   font-size: 16px;
   line-height: 1;
   height: 40px;
-  outline: none;
-  background-color: white;
-  border: 1px solid hsl(240 6% 90%);
   transition: border-color 250ms, color 250ms;
 }
 .select__trigger:hover {
   border-color: hsl(240 5% 65%);
 }
 .select__trigger:focus-visible {
-  outline: 2px solid hsl(200 98% 39%);
-  outline-offset: 2px;
+  --uno: pl-3;
+  /* outline: 2px solid hsl(200 98% 39%);
+  outline-offset: 2px; */
 }
 .select__trigger[data-invalid] {
   border-color: hsl(0 72% 51%);

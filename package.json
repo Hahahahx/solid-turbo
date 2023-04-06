@@ -1,0 +1,40 @@
+{
+  "name": "next-turbo-temp",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@7.11.0",
+  "description": "The project is build with NextJS and TailwindCSS",
+  "author": {
+    "name": "ux",
+    "email": "1219654535@qq.com"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "prepare": "husky install",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "eslint-config-custom": "workspace:*",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,mdx}": [
+      "eslint --fix --ext *.{js,jsx,ts,tsx,json,md,mdx} ./",
+      "eslint",
+      "git add"
+    ]
+  }
+}

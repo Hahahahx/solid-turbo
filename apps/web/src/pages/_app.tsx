@@ -1,5 +1,8 @@
 import type { ParentProps } from 'solid-js'
-import { Select } from 'ui'
+import {
+  Input,
+  MultiSelect, Select,
+} from 'ui'
 
 import {
   A, useModals, useNavigate,
@@ -13,7 +16,7 @@ export default function App(props: ParentProps) {
   const b = () => navigate('/posts/:id/:pid?', { params: { id: 'xyz' } })
 
   return (
-    <section style={{ margin: '24px' }} bg-slate-400>
+    <section style={{ margin: '24px' }} bg-slate-100 p-2>
       <header style={{
         display: 'flex', gap: '24px',
       }}>
@@ -24,7 +27,11 @@ export default function App(props: ParentProps) {
         </A>
         <button onClick={() => modals.open('/modal', { at: '/posts' })}>Open global modal</button>
       </header>
-<Select/>
+      <Input/>
+
+      <Select/>
+
+      <MultiSelect/>
       <main>{props.children}</main>
     </section>
   )

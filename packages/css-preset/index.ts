@@ -1,11 +1,14 @@
 import {
   presetAttributify,
-  presetIcons,
-  presetTypography, presetUno, presetWebFonts, transformerCompileClass, transformerDirectives,
-  transformerVariantGroup,
+  presetIcons, presetMini,
+  presetTypography, presetUno, presetWebFonts, transformerCompileClass,
+  transformerDirectives, transformerVariantGroup,
 } from 'unocss'
 import { presetKobalte } from 'unocss-preset-primitives'
 import type { UserConfig } from '@unocss/core'
+import { presetExtra } from 'unocss-preset-extra'
+import { theme as Animate } from '@unocss/preset-wind'
+import { presetUseful } from 'unocss-preset-useful'
 import { rules } from './src/rules'
 import {
   presetTheme, theme,
@@ -23,8 +26,9 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
     shortcuts,
     presets: [
       presetUno({ attributifyPseudo: true }),
-      // presetMini(),
+      presetMini(),
       presetAttributify(),
+      presetExtra(),
       presetIcons({
         extraProperties: {
           'color': 'inherit',
@@ -35,6 +39,7 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
         cdn: 'https://esm.sh/',
       }),
       // presetWind(),
+      presetUseful(),
       presetTypography(),
       presetWebFonts({
         provider: 'none',
@@ -44,10 +49,14 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
       presetTheme,
       ...(options.presets || []),
     ],
+    safelist: Object.keys(Animate.animation?.keyframes ?? {}).map((k) => [
+      `animate-${k}`, `group-hover-animate-${k}`,
+    ]).flat(),
     transformers: [
       transformerDirectives(),
       transformerVariantGroup(),
       transformerCompileClass(),
+      // transformerAttributifyJsx(),
       ...(options.transformers || []),
     ],
     variants: [],

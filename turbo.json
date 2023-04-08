@@ -1,5 +1,5 @@
 {
-  "$schema": "https://turbo.build/schema.json", 
+  "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -16,5 +16,5 @@
       "cache": false
     }
   },
-  "globalDependencies": ["**/.env.*local","pnpm-lock.yaml"]
+  "globalDependencies": ["**/.env.*local", "pnpm-lock.yaml"]
 }

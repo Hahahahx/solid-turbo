@@ -1,7 +1,7 @@
 {
-  "extends":"tsconfig/solid.json",
+  "extends": "tsconfig/solid.json",
   "compilerOptions": {
-    "baseUrl": ".", 
+    "baseUrl": ".",
     "paths": { "~/*": ["src/*"] },
     "types": ["vite/client"]
   },

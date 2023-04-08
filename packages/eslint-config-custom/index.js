@@ -15,6 +15,9 @@ module.exports = {
     'semi': [
       'error', 'never',
     ],
+    'indent': [
+      'error', 2,
+    ],
     'no-lonely-if': 'error',
     'no-console': 'warn',
     'import/export': 'warn',

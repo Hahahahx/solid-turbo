@@ -1,8 +1,9 @@
 import {
   presetAttributify,
   presetIcons, presetMini,
-  presetTypography, presetUno, presetWebFonts, transformerCompileClass,
-  transformerDirectives, transformerVariantGroup,
+  presetTypography, presetUno, presetWebFonts,
+  transformerCompileClass, transformerDirectives,
+  transformerVariantGroup,
 } from 'unocss'
 import { presetKobalte } from 'unocss-preset-primitives'
 import type { UserConfig } from '@unocss/core'
@@ -14,6 +15,8 @@ import {
   presetTheme, theme,
 } from './src/theme'
 import { shortcuts } from './src/shortcuts'
+import input from './src/flowbite/input'
+import tooltip from './src/flowbite/tooltip'
 
 /**
  * Extends unocss/vite Plugin Options Config
@@ -38,7 +41,6 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
         scale: 1.2,
         cdn: 'https://esm.sh/',
       }),
-      // presetWind(),
       presetUseful(),
       presetTypography(),
       presetWebFonts({
@@ -60,5 +62,14 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
       ...(options.transformers || []),
     ],
     variants: [],
+    preflights: [
+      {
+        getCSS: ({ theme }: { theme: any }) => {
+          return [
+            input(theme), tooltip(theme),
+          ].join('\n')
+        },
+      },
+    ],
   }
 }

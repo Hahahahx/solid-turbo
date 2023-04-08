@@ -1,14 +1,18 @@
 import type { ParentProps } from 'solid-js'
-import {
-  Input,
-  MultiSelect, Select,
-} from 'ui'
+// import {
+//   Input,
+//   MultiSelect, Select,
+// } from 'ui'
 
+import { initFlowbite } from 'flowbite'
+import { Button } from 'ui/src/components/Button'
 import {
   A, useModals, useNavigate,
 } from '~/router'
 
 export default function App(props: ParentProps) {
+  initFlowbite()
+
   const navigate = useNavigate()
   const modals = useModals()
 
@@ -27,11 +31,20 @@ export default function App(props: ParentProps) {
         </A>
         <button onClick={() => modals.open('/modal', { at: '/posts' })}>Open global modal</button>
       </header>
-      <Input/>
 
-      <Select/>
+      <Button>Default</Button>
 
-      <MultiSelect/>
+      {/* <Button.Group>
+        <Button color="gray">
+            Profile
+        </Button>
+        <Button color="gray">
+            Settings
+        </Button>
+        <Button color="gray">
+            Messages
+        </Button>
+      </Button.Group> */}
       <main>{props.children}</main>
     </section>
   )

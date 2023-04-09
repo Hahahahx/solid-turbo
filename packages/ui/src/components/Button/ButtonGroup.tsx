@@ -1,6 +1,6 @@
 import type { JSX } from 'solid-js'
 import {
-  children, createEffect, splitProps,
+  createContext, splitProps,
 } from 'solid-js'
 import type { DeepPartial } from '..'
 import { mergeDeep } from '../../helpers/mergeDeep'
@@ -26,7 +26,17 @@ export type ButtonGroupProps
     children: JSX.Element
   }
 
-function ButtonGroup(props: ButtonGroupProps) {
+export const ButtonGroupContext = createContext<{
+  pill?: boolean
+  outline?: boolean
+  group?: boolean
+}>({
+  pill: false,
+  outline: false,
+  group: true,
+})
+
+export function ButtonGroup(props: ButtonGroupProps) {
   const [
     local, other,
   ] = splitProps(props, [
@@ -38,19 +48,6 @@ function ButtonGroup(props: ButtonGroupProps) {
   ])
 
   const customTheme = local.theme ?? {}
-  const resolved = children(() => props.children)
-
-  createEffect(() => {
-    const list = resolved.toArray()
-    list.forEach((child, index) => {
-      // @ts-expect-error
-      // child?.setAttribute?.('outline', local.outline)
-      // @ts-expect-error
-      // child?.setAttribute?.('pill', local.pill)
-      // @ts-expect-error
-      // child?.setAttribute?.('positionInGroup', index === 0 ? 'start' : index === (props.children as ButtonProps[]).length - 1 ? 'end' : 'middle')
-    })
-  })
 
   const theme = mergeDeep(useTheme().theme.buttonGroup, customTheme)
 
@@ -58,10 +55,11 @@ function ButtonGroup(props: ButtonGroupProps) {
     <div class={[
       theme.base, local.class,
     ].join(' ')} role="group" {...other}>
-      {resolved()}
+      <ButtonGroupContext.Provider value={{
+        ...local,
+      }}>
+        {local.children}
+      </ButtonGroupContext.Provider>
     </div>
   )
 }
-
-ButtonGroup.displayName = 'Button.Group'
-export default ButtonGroup

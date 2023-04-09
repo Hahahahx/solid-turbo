@@ -1,5 +1,6 @@
 import type { FlowbiteTheme } from '../components'
 
+// @unocss-include
 const theme: FlowbiteTheme = {
   accordion: {
     root: {
@@ -209,7 +210,7 @@ const theme: FlowbiteTheme = {
     },
   },
   button: {
-    base: 'group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10',
+    base: 'btn group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded',
     fullSized: 'w-full',
     color: {
       dark: 'text-white bg-gray-800 border border-transparent hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 disabled:hover:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 dark:border-gray-700 dark:disabled:hover:bg-gray-800',
@@ -239,6 +240,7 @@ const theme: FlowbiteTheme = {
         'text-yellow-900 bg-white border border-yellow-300 hover:bg-yellow-100 focus:ring-4 focus:ring-yellow-300 disabled:hover:bg-white dark:bg-yellow-600 dark:text-white dark:border-yellow-600 dark:hover:bg-yellow-700 dark:hover:border-yellow-700 dark:focus:ring-yellow-700',
     },
     disabled: 'cursor-not-allowed opacity-50',
+    loading: 'cursor-wait opacity-90',
     gradient: {
       cyan: 'text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800',
       failure:
@@ -270,13 +272,7 @@ const theme: FlowbiteTheme = {
         'text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 hover:!text-gray-900 focus:ring-4 focus:ring-lime-200 dark:focus:ring-teal-700',
     },
     inner: {
-      base: 'flex items-center',
-      position: {
-        none: '',
-        start: 'rounded-r-none',
-        middle: '!rounded-none',
-        end: 'rounded-l-none',
-      },
+      base: 'flex items-center  !rounded-inherit',
       outline: 'border border-transparent',
     },
     label:
@@ -288,16 +284,9 @@ const theme: FlowbiteTheme = {
         light: '',
       },
       off: '',
-      on: 'flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-hover:bg-opacity-0 group-hover:text-inherit dark:bg-gray-900 dark:text-white w-full',
-      pill: {
-        off: 'rounded-md',
-        on: 'rounded-full',
-      },
+      on: 'flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-hover-bg-opacity-0 group-hover-text-inherit dark:bg-gray-900 dark:text-white w-full',
     },
-    pill: {
-      off: 'rounded-lg',
-      on: 'rounded-full',
-    },
+    pill: 'rounded-full',
     size: {
       xs: 'text-xs px-2 py-1',
       sm: 'text-sm px-3 py-1.5',
@@ -307,7 +296,7 @@ const theme: FlowbiteTheme = {
     },
   },
   buttonGroup: {
-    base: 'inline-flex',
+    base: 'inline-flex [&>.btn]:(rounded-none) not-first:[&>.btn]:(border-l-0 pl-0) !first:[&>.btn]:(rounded-l) !last:[&>.btn]:(rounded-r)',
     position: {
       none: 'focus:!ring-2',
       start: 'rounded-r-none',

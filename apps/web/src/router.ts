@@ -7,6 +7,8 @@ export type Path =
   | `/`
   | `/:lang?/lang`
   | `/about`
+  | `/button`
+  | `/button-group`
   | `/posts`
   | `/posts/:id`
   | `/posts/:id/:pid?`

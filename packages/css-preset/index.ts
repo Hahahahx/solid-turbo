@@ -28,7 +28,7 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
     theme,
     shortcuts,
     presets: [
-      presetUno({ attributifyPseudo: true }),
+      presetUno(),
       presetMini(),
       presetAttributify(),
       presetExtra(),

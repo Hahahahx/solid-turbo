@@ -1,5 +1,5 @@
 import {
-  type JSX, Show, splitProps,
+  type JSX, Show, splitProps, useContext,
 } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import type { DeepPartial } from '..'
@@ -12,31 +12,33 @@ import type {
   FlowbiteSizes,
 } from '../Flowbite/FlowbiteTheme'
 import { useTheme } from '../Flowbite/ThemeContext'
-import type { PositionInButtonGroup } from './ButtonGroup'
+import {
+  ButtonGroup,
+  ButtonGroupContext,
+} from './ButtonGroup'
 
 export interface FlowbiteButtonTheme {
   base: string
   fullSized: string
   color: FlowbiteColors
   disabled: string
+  loading: string
   gradient: ButtonGradientColors
   gradientDuoTone: ButtonGradientDuoToneColors
   inner: FlowbiteButtonInnerTheme
   label: string
   outline: FlowbiteButtonOutlineTheme
-  pill: FlowbiteBoolean
+  pill: string
   size: ButtonSizes
 }
 
 export interface FlowbiteButtonInnerTheme {
   base: string
-  position: PositionInButtonGroup
   outline: string
 }
 
 export interface FlowbiteButtonOutlineTheme extends FlowbiteBoolean {
   color: ButtonOutlineColors
-  pill: FlowbiteBoolean
 }
 
 export interface ButtonColors
@@ -69,13 +71,13 @@ export interface ButtonProps extends Omit<JSX.IntrinsicElements['button'], 'colo
   target?: string
   label?: JSX.Element
   outline?: boolean
+  loading?: boolean
   pill?: boolean
-  positionInGroup?: keyof PositionInButtonGroup
   size?: keyof ButtonSizes
   theme?: DeepPartial<FlowbiteButtonTheme>
 }
 
-export function Button(props: ButtonProps) {
+export function ButtonComponent(props: ButtonProps) {
   const [
     local, other,
   ] = splitProps(props, [
@@ -90,59 +92,58 @@ export function Button(props: ButtonProps) {
     'label',
     'outline',
     'pill',
-    'positionInGroup',
+    'loading',
     'size',
     'theme',
   ])
+  const {
+    pill: groupPill, outline: groupOutline,
+  } = useContext(ButtonGroupContext)
 
   const customTheme = local.theme ?? {}
   const color = local.color ?? 'info'
   const size = local.size ?? 'md'
-  const positionInGroup = local.positionInGroup ?? 'none'
-  const pill = !!local.pill
-  const outline = !!local.outline
+  const pill = local.pill ?? groupPill
+  const outline = local.outline ?? groupOutline
 
-  const {
-    buttonGroup: groupTheme, button: theme,
-  } = mergeDeep(useTheme().theme, customTheme)
+  console.log(outline)
+
+  const { button: theme } = mergeDeep(useTheme().theme, customTheme)
 
   const isLink = typeof local.href !== 'undefined'
-  const Component = () => isLink ? <a/> : <button/>
 
   return (
     <Dynamic
       component={isLink ? 'a' : 'button'}
-      disabled={local.disabled}
+      disabled={local.disabled || local.loading}
       href={local.href}
       type={isLink ? undefined : 'button'}
-      // class={[
-      //   groupTheme.position[positionInGroup],
-      //   theme.base,
-      //   theme.pill[local.pill ? 'on' : 'off'],
-      //   props.class,
-      // ].join(' ')}
+      class={[
+        theme.base, props.class,
+      ].join(' ')}
       // @ts-expect-error
-      // classList={{
-      //   [theme.disabled]: local.disabled,
-      //   [theme.color[color]]: !local.gradientDuoTone && !local.gradientMonochrome,
-      //   [theme.gradientDuoTone[local.gradientDuoTone!]]: local.gradientDuoTone && !local.gradientMonochrome,
-      //   [theme.gradient[local.gradientMonochrome!]]: !local.gradientDuoTone && local.gradientMonochrome,
-      //   [(theme.outline.color[color] ?? theme.outline.color.default)]: local.outline,
-      //   [theme.fullSized]: local.fullSized,
-      // }}
+      classList={{
+        [theme.pill]: pill,
+        [theme.disabled]: local.disabled,
+        [theme.loading]: local.loading,
+        [theme.color[color]]: !local.gradientDuoTone && !local.gradientMonochrome,
+        [theme.gradientDuoTone[local.gradientDuoTone!]]: local.gradientDuoTone && !local.gradientMonochrome,
+        [theme.gradient[local.gradientMonochrome!]]: !local.gradientDuoTone && local.gradientMonochrome,
+        [(theme.outline.color[color] ?? theme.outline.color.default)]: outline,
+        [theme.fullSized]: local.fullSized,
+      }}
       {...other}
     >
       <span
-        // class={[
-        //   theme.inner.base,
-        //   theme.inner.position[positionInGroup],
-        //   theme.outline[outline ? 'on' : 'off'],
-        //   theme.outline.pill[(outline && pill) ? 'on' : 'off'],
-        //   theme.size[size],
-        // ].join(' ')}
-        // classList={{
-        //   [theme.inner.outline]: local.outline && !theme.outline.color[color],
-        // }}
+        class={[
+          theme.inner.base,
+          // theme.inner.position[positionInGroup ?? 'none'],
+          theme.outline[outline ? 'on' : 'off'],
+          theme.size[size],
+        ].join(' ')}
+        classList={{
+          [theme.inner.outline]: local.outline && !theme.outline.color[color],
+        }}
       >
         {local.children}
         <Show when={typeof local.label !== 'undefined'}>
@@ -154,3 +155,7 @@ export function Button(props: ButtonProps) {
     </Dynamic >
   )
 }
+
+export const Button = Object.assign(ButtonComponent, {
+  Group: ButtonGroup,
+})

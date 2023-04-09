@@ -14,7 +14,7 @@ import type {
 // import type { FlowbiteDropdownTheme } from '../Dropdown'
 // import type { FlowbiteFileInputTheme } from '../FileInput'
 // import type { FlowbiteFooterTheme } from '../Footer'
-// import type { FlowbiteHelperTextTheme } from '../HelperText'
+import type { FlowbiteHelperTextTheme } from '../HelperText'
 // import type { FlowbiteLabelTheme } from '../Label'
 // import type { FlowbiteListGroupTheme } from '../ListGroup'
 // import type { FlowbiteModalTheme } from '../Modal'
@@ -30,7 +30,7 @@ import type {
 // import type { FlowbiteTabTheme } from '../Tab'
 // import type { FlowbiteTableTheme } from '../Table'
 // import type { FlowbiteTextareaTheme } from '../Textarea'
-// import type { FlowbiteTextInputTheme } from '../TextInput'
+import type { FlowbiteTextInputTheme } from '../TextInput'
 // import type { FlowbiteTimelineTheme } from '../Timeline'
 // import type { FlowbiteToastTheme } from '../Toast'
 // import type { FlowbiteToggleSwitchTheme } from '../ToggleSwitch'
@@ -68,10 +68,10 @@ export interface FlowbiteTheme {
   // radio: FlowbiteRadioTheme
   // rangeSlider: FlowbiteRangeSliderTheme
   // select: FlowbiteSelectTheme
-  // textInput: FlowbiteTextInputTheme
+  textInput: FlowbiteTextInputTheme
   // textarea: FlowbiteTextareaTheme
   // toggleSwitch: FlowbiteToggleSwitchTheme
-  // helperText: FlowbiteHelperTextTheme
+  helperText: FlowbiteHelperTextTheme
   // table: FlowbiteTableTheme
   // timeline: FlowbiteTimelineTheme
 }

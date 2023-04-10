@@ -9,19 +9,19 @@ import type {
 } from '../Button'
 // import type { FlowbiteCardTheme } from '../Card'
 // import type { FlowbiteCarouselTheme } from '../Carousel'
-// import type { FlowbiteCheckboxTheme } from '../Checkbox'
+import type { FlowbiteCheckboxTheme } from '../Checkbox'
 // import type { FlowbiteDarkThemeToggleTheme } from '../DarkThemeToggle'
 // import type { FlowbiteDropdownTheme } from '../Dropdown'
 // import type { FlowbiteFileInputTheme } from '../FileInput'
 // import type { FlowbiteFooterTheme } from '../Footer'
 import type { FlowbiteHelperTextTheme } from '../HelperText'
-// import type { FlowbiteLabelTheme } from '../Label'
+import type { FlowbiteLabelTheme } from '../Label'
 // import type { FlowbiteListGroupTheme } from '../ListGroup'
 // import type { FlowbiteModalTheme } from '../Modal'
 // import type { FlowbiteNavbarTheme } from '../Navbar'
 // import type { FlowbitePaginationTheme } from '../Pagination'
 // import type { FlowbiteProgressTheme } from '../Progress'
-// import type { FlowbiteRadioTheme } from '../Radio'
+import type { FlowbiteRadioTheme } from '../Radio'
 // import type { FlowbiteRangeSliderTheme } from '../RangeSlider'
 // import type { FlowbiteRatingTheme } from '../Rating'
 // import type { FlowbiteSelectTheme } from '../Select'
@@ -33,7 +33,7 @@ import type { FlowbiteHelperTextTheme } from '../HelperText'
 import type { FlowbiteTextInputTheme } from '../TextInput'
 // import type { FlowbiteTimelineTheme } from '../Timeline'
 // import type { FlowbiteToastTheme } from '../Toast'
-// import type { FlowbiteToggleSwitchTheme } from '../ToggleSwitch'
+import type { FlowbiteToggleSwitchTheme } from '../ToggleSwitch'
 // import type { FlowbiteTooltipTheme } from '../Tooltip'
 
 export type CustomFlowbiteTheme = DeepPartial<FlowbiteTheme>
@@ -62,15 +62,15 @@ export interface FlowbiteTheme {
   // toast: FlowbiteToastTheme
   // tooltip: FlowbiteTooltipTheme
   // dropdown: FlowbiteDropdownTheme
-  // checkbox: FlowbiteCheckboxTheme
+  checkbox: FlowbiteCheckboxTheme
   // fileInput: FlowbiteFileInputTheme
-  // label: FlowbiteLabelTheme
-  // radio: FlowbiteRadioTheme
+  label: FlowbiteLabelTheme
+  radio: FlowbiteRadioTheme
   // rangeSlider: FlowbiteRangeSliderTheme
   // select: FlowbiteSelectTheme
   textInput: FlowbiteTextInputTheme
   // textarea: FlowbiteTextareaTheme
-  // toggleSwitch: FlowbiteToggleSwitchTheme
+  toggleSwitch: FlowbiteToggleSwitchTheme
   helperText: FlowbiteHelperTextTheme
   // table: FlowbiteTableTheme
   // timeline: FlowbiteTimelineTheme

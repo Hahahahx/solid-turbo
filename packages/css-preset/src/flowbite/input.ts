@@ -9,6 +9,7 @@ export default function input(theme: any) {
   const baseLineHeight = theme.fontSize.base[1]
 
   const baseInput = `
+
     [type='text'],
     [type='email'],
     [type='url'],
@@ -78,10 +79,12 @@ export default function input(theme: any) {
   `
 
   const checkboxRadios = `
-    [type="checkbox"], [type="radio"] {
+    
+    [type='checkbox'], 
+    [type='radio'] { 
       appearance: none;
       padding: 0;
-      print-color-adjust: exact;
+      print-color-adjust: exact; 
       display: inline-block;
       vertical-align: middle;
       background-origin: border-box;
@@ -93,6 +96,32 @@ export default function input(theme: any) {
       width: ${spacing[4]};
       border-color: ${theme.colors.gray['500']};
     }
+
+    [type='radio']{
+      border-radius:100%;
+    }
+    
+    [type='radio']:checked {
+      background-image: url("${svgToDataUri(
+    '<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>',
+  )}")
+    }
+
+
+  
+  [type='checkbox']:focus, [type='radio']:focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --un-ring-inset: var(--un-empty,/*!*/ /*!*/);
+    --un-ring-offset-width: 2px;
+    --un-ring-offset-color: white;
+    --un-ring-color:  ${theme.colors.blue[600]};
+    --un-ring-offset-shadow: var(--un-ring-inset) 0 0 0 var(--un-ring-offset-width) var(--un-ring-offset-color);
+    --un-ring-shadow: var(--un-ring-inset) 0 0 0 calc(2px + var(--un-ring-offset-width)) var(--un-ring-color);
+    box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
+}
+
+
     [type='checkbox']:checked, 
     [type='radio']:checked, 
     .dark [type='checkbox']:checked,
@@ -103,11 +132,14 @@ export default function input(theme: any) {
       background-position: center;
       background-repeat: no-repeat;
     }
+
+
     [type='checkbox']:checked  {
       background-image: url("${svgToDataUri(
     '<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>',
   )}");
     }
+
     [type='checkbox']:indeterminate {
       background-image: url("${svgToDataUri(
     '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h8"/></svg>',
@@ -118,20 +150,32 @@ export default function input(theme: any) {
       background-position: center;
       background-repeat: no-repeat;
     }
+
+
+    [type='checkbox']:indeterminate:hover,
+    [type='checkbox']:indeterminate:focus,
+    {
+        border-color: transparent;
+        background-color: currentColor;
+    },
   `
 
   const toggle = `
+    .toggle-bg{
+      position:relative;
+    }
     .toggle-bg:after {
       content: '';
       position: absolute;
-      top: ${spacing[0.5]};
-      left: ${spacing[0.5]};
+      top: 10%;
+      left: 5%;
       background: white;
       border-color: ${theme.colors.gray['300']}; 
       border-radius: 100%;
-      height:${height[5]};
-      width:${width[5]};
-      transition-property:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+      height:80%;
+      width:0;
+      padding-left:40%;
+      transition-property:all;
       transition-duration: .15s;
           
       --un-ring-offset-shadow: var(--un-ring-inset) 0 0 0 var(--un-ring-offset-width) var(--un-ring-offset-color);
@@ -139,8 +183,9 @@ export default function input(theme: any) {
       box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);
     }
     
-    input:checked + .toggle-bg:after {
-      transform: translateX(100%);
+    button[aria-checked='true'] .toggle-bg:after {
+      left:95%;
+      transform: translateX(-100%);
       border-color: white;
     }
     
@@ -211,9 +256,9 @@ export default function input(theme: any) {
 
   return [
     baseInput,
+    checkboxRadios,
     select,
     toggle,
-    checkboxRadios,
     inputFile,
     emptyContentMonkeyPatch,
   ].join('\n')

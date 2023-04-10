@@ -5,11 +5,11 @@ import {
   transformerCompileClass, transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import { presetKobalte } from 'unocss-preset-primitives'
 import type { UserConfig } from '@unocss/core'
 import { presetExtra } from 'unocss-preset-extra'
 import { theme as Animate } from '@unocss/preset-wind'
 import { presetUseful } from 'unocss-preset-useful'
+import presetAutoprefixer from 'unocss-preset-autoprefixer'
 import { rules } from './src/rules'
 import {
   presetTheme, theme,
@@ -47,7 +47,7 @@ export function extendUnocssOptions({ ...options }: UserConfig = {}): UserConfig
         provider: 'none',
         fonts: { script: 'Homemade Apple' },
       }),
-      presetKobalte(/* options */) as any,
+      presetAutoprefixer(),
       presetTheme,
       ...(options.presets || []),
     ],

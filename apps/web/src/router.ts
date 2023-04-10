@@ -9,6 +9,8 @@ export type Path =
   | `/about`
   | `/button`
   | `/button-group`
+  | `/input`
+  | `/input-other`
   | `/posts`
   | `/posts/:id`
   | `/posts/:id/:pid?`

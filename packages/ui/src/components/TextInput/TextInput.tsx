@@ -88,12 +88,12 @@ export function TextInput(props: TextInputProps) {
         <div class={theme.field.base}>
           {local.icon && (
             <div class={theme.field.icon.base}>
-              {/* {local.icon?.({class:theme.field.icon.svg})}  */}
+              {local.icon}
             </div>
           )}
           {local.rightIcon && (
             <div data-testid="right-icon" class={theme.field.rightIcon.base}>
-              {/* <RightIcon class={theme.field.rightIcon.svg} /> */}
+              {local.rightIcon}
             </div>
           )}
           <input
@@ -101,6 +101,7 @@ export function TextInput(props: TextInputProps) {
               theme.field.input.base,
               theme.field.input.colors[local.color ?? 'gray'],
               theme.field.input.withIcon[local.icon ? 'on' : 'off'],
+              theme.field.input.withRightIcon[local.rightIcon ? 'on' : 'off'],
               theme.field.input.withAddon[local.addon ? 'on' : 'off'],
               theme.field.input.withShadow[local.shadow ? 'on' : 'off'],
               theme.field.input.sizes[local.sizing ?? 'md'],

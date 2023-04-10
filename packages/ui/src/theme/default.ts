@@ -351,7 +351,7 @@ const theme: FlowbiteTheme = {
   },
   checkbox: {
     root: {
-      base: 'h-4 w-4 rounded border border-gray-300 bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600',
+      base: 'h-4 w-4 rounded border border-gray-300 bg-gray-100  focus:ring-3 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600',
     },
   },
   darkThemeToggle: {
@@ -694,8 +694,8 @@ const theme: FlowbiteTheme = {
     field: {
       base: 'relative w-full',
       icon: {
-        base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
-        svg: 'h-5 w-5 text-gray-500 dark:text-gray-400',
+        base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 [&>svg]:(h-5 w-5 text-gray-500 dark:text-gray-400)',
+        svg: '',
       },
       select: {
         base: 'block w-full border disabled:cursor-not-allowed disabled:opacity-50',
@@ -736,15 +736,15 @@ const theme: FlowbiteTheme = {
     field: {
       base: 'relative w-full',
       icon: {
-        base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
+        base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 [&>i]:(h-5 w-5 text-gray-500 dark:text-gray-400)',
         svg: 'h-5 w-5 text-gray-500 dark:text-gray-400',
       },
       rightIcon: {
-        base: 'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3',
+        base: 'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 [&>i]:(h-5 w-5 text-gray-500 dark:text-gray-400)',
         svg: 'h-5 w-5 text-gray-500 dark:text-gray-400',
       },
       input: {
-        base: 'block w-full border disabled:cursor-not-allowed disabled:opacity-50',
+        base: 'block w-full truncate border disabled:cursor-not-allowed disabled:opacity-50',
         sizes: {
           sm: 'p-2 sm:text-xs',
           md: 'p-2.5 text-sm',
@@ -806,9 +806,9 @@ const theme: FlowbiteTheme = {
       label: 'ml-3 text-sm font-medium text-gray-900 dark:text-gray-300',
     },
     toggle: {
-      base: 'toggle-bg h-6 w-11 rounded-full border group-focus:ring-4 group-focus:ring-blue-500/25',
+      base: 'toggle-bg h-6 w-11 rounded-full border group-focus-ring-4 group-focus-ring-blue-500/25',
       checked: {
-        on: 'after:translate-x-full after:border-white',
+        on: ' after:border-white', // after:translate-x-full
         off: 'border-gray-200 bg-gray-200 dark:border-gray-600 dark:bg-gray-700',
         color: {
           blue: ' bg-blue-700 border-blue-700',

@@ -141,14 +141,14 @@ export default function ButtonPage() {
     <div class="flex flex-wrap items-center gap-2">
       <div>
         <Button>
-          <div i-ic-round-close/>
+          <i i-ic-round-close/>
               Buy now
         </Button>
       </div>
       <div>
         <Button>
               Choose plan
-          <div i-ic-round-close/>
+          <i i-ic-round-close/>
         </Button>
       </div>
     </div>

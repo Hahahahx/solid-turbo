@@ -1,1 +1,1 @@
-export * from "G:/solid-turbo/packages/css-preset/index";
+export * from "G:/JS/self/solid-turbo/packages/css-preset/index";
